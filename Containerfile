@@ -13,11 +13,6 @@ RUN dnf -y install epel-release && \
 # Install required tools and dependencies
 RUN dnf install -y git make curl unzip zip which podman buildah skopeo java-11-openjdk --allowerasing
 
-# Install Terraform
-RUN curl -sSL https://releases.hashicorp.com/terraform/1.1.2/terraform_1.1.2_linux_amd64.zip -o /tmp/terraform.zip && \
-    unzip /tmp/terraform.zip -d /usr/local/bin && \
-    rm /tmp/terraform.zip
-
 # Install Skaffold
 RUN curl -sSL https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 -o /usr/local/bin/skaffold && \
     chmod +x /usr/local/bin/skaffold
