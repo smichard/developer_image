@@ -1,5 +1,5 @@
 # Use CentOS Stream 9 as the base image
-FROM centos/centos-stream:9
+FROM quay.io/centos/centos:stream9
 
 USER 0
 
@@ -7,7 +7,7 @@ RUN dnf -y install epel-release && \
     dnf -y update
 
 # Install required tools and dependencies
-RUN dnf install -y git make curl unzip zip which podman buildah skopeo
+RUN dnf install -y git make curl unzip zip which podman buildah skopeo --allowerasing
 
 # Install Java using dnf
 RUN dnf install -y java-11-openjdk
