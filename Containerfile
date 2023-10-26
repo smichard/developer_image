@@ -11,7 +11,7 @@ RUN dnf -y install epel-release && \
     dnf -y update
 
 # Install required tools and dependencies
-RUN dnf install -y git make curl unzip zip which podman buildah skopeo java-11-openjdk --allowerasing
+RUN dnf install -y git make curl unzip zip which podman buildah skopeo java-11-openjdk docker --allowerasing
 
 RUN dnf -y install xz slirp4netns fuse-overlayfs shadow-utils --exclude container-selinux && \
     dnf -y reinstall shadow-utils && \
@@ -26,15 +26,15 @@ RUN curl -sSL https://storage.googleapis.com/skaffold/releases/latest/skaffold-l
 #    tar -C /usr/local/bin -xzf /tmp/oc.tar.gz oc kubectl && \
 #    rm /tmp/oc.tar.gz
 
-ARG OC_VERSION=4.7.4
-RUN curl -sSLf https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/${OC_VERSION}/openshift-client-linux.tar.gz \
-    | tar --exclude=README.md -xzvf - &&\
-    mv kubectl oc /usr/local/bin/
+#ARG OC_VERSION=4.7.4
+#RUN curl -sSLf https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/${OC_VERSION}/openshift-client-linux.tar.gz \
+#    | tar --exclude=README.md -xzvf - &&\
+#    mv kubectl oc /usr/local/bin/
 
 # Install Go
-RUN dnf remove -y go-toolset && \
-    curl -sSL https://go.dev/dl/go1.20.3.linux-amd64.tar.gz -o /tmp/go1.20.3.linux-amd64.tar.gz && \
-    tar -C /usr/local -xzf /tmp/go1.20.3.linux-amd64.tar.gz && rm /tmp/go1.20.3.linux-amd64.tar.gz
+#RUN dnf remove -y go-toolset && \
+#    curl -sSL https://go.dev/dl/go1.20.3.linux-amd64.tar.gz -o /tmp/go1.20.3.linux-amd64.tar.gz && \
+#    tar -C /usr/local -xzf /tmp/go1.20.3.linux-amd64.tar.gz && rm /tmp/go1.20.3.linux-amd64.tar.gz
 
 ENV PATH=$PATH:/usr/local/go/bin
 
