@@ -4,14 +4,11 @@ USER 0
 
 #ENV KUBEDOCK_VERSION 0.9.3
 
-#RUN curl -L https://github.com/joyrex2001/kubedock/releases/download/${KUBEDOCK_VERSION}/kubedock_${KUBEDOCK_VERSION}_linux_amd64.tar.gz | tar -C /usr/local/bin -xz \
-#    && chmod +x /usr/local/bin/kubedock
-
 RUN dnf -y install epel-release && \
     dnf -y update
 
 # Install required tools and dependencies
-RUN dnf install -y git make curl unzip zip which podman buildah skopeo java-11-openjdk docker --allowerasing
+RUN dnf install -y git make curl which java-11-openjdk --allowerasing
 
 RUN dnf -y install xz slirp4netns fuse-overlayfs shadow-utils --exclude container-selinux && \
     dnf -y reinstall shadow-utils && \
