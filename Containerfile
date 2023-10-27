@@ -1,20 +1,18 @@
-FROM registry.redhat.io/devspaces/udi-rhel8:3.9-16.1698063074
+FROM quay.io/devfile/universal-developer-image:ubi8-latest
 
 USER 0
 
-#ENV KUBEDOCK_ENABLED=true
-
 #ENV KUBEDOCK_VERSION 0.9.3
 
-#RUN dnf -y install epel-release && \
-#    dnf -y update
+RUN dnf -y install epel-release && \
+    dnf -y update
 
 # Install required tools and dependencies
-#RUN dnf install -y git make curl which java-11-openjdk --allowerasing
+RUN dnf install -y git make curl which java-11-openjdk --allowerasing
 
-#RUN dnf -y install xz slirp4netns fuse-overlayfs shadow-utils --exclude container-selinux && \
-#    dnf -y reinstall shadow-utils && \
-#    dnf clean all
+RUN dnf -y install xz slirp4netns fuse-overlayfs shadow-utils --exclude container-selinux && \
+    dnf -y reinstall shadow-utils && \
+    dnf clean all
 
 # Install Skaffold
 RUN curl -sSL https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 -o /usr/local/bin/skaffold && \
@@ -35,17 +33,17 @@ RUN curl -sSL https://storage.googleapis.com/skaffold/releases/latest/skaffold-l
 #    curl -sSL https://go.dev/dl/go1.20.3.linux-amd64.tar.gz -o /tmp/go1.20.3.linux-amd64.tar.gz && \
 #    tar -C /usr/local -xzf /tmp/go1.20.3.linux-amd64.tar.gz && rm /tmp/go1.20.3.linux-amd64.tar.gz
 
-#ENV PATH=$PATH:/usr/local/go/bin
+ENV PATH=$PATH:/usr/local/go/bin
 
-#RUN git clone https://github.com/joyrex2001/kubedock.git && \
-#    cd kubedock && \
-#    make build && \
-#    mv ./kubedock /usr/local/bin && \
-#    chmod +x /usr/local/bin/kubedock && \
-#    cd .. && rm -fr kubedock
+RUN git clone https://github.com/joyrex2001/kubedock.git && \
+    cd kubedock && \
+    make build && \
+    mv ./kubedock /usr/local/bin && \
+    chmod +x /usr/local/bin/kubedock && \
+    cd .. && rm -fr kubedock
 
 USER 10001
 
-#RUN source $HOME/.sdkman/bin/sdkman-init.sh && sdk default java 17.0.3-tem
+RUN source $HOME/.sdkman/bin/sdkman-init.sh && sdk default java 17.0.3-tem
 
-#CMD while [ ! -f /home/user/.kube/config ]; do sleep 1; done; kubedock server --port-forward
+CMD while [ ! -f /home/user/.kube/config ]; do sleep 1; done; kubedock server --port-forward
