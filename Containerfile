@@ -36,9 +36,9 @@ RUN git clone https://github.com/joyrex2001/kubedock.git && \
     cd .. && rm -fr kubedock
 
 # Install and configure Oh-My-ZSH
-RUN sed -i 's#/bin/bash#/bin/zsh#g' /etc/passwd && \
-    wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh && \
-    wget -O ~/.zshrc https://gist.githubusercontent.com/smichard/bd86a05ed89a92e364e65ea3ada8e19d/raw/a3cbe29982395dd6fb3fb5d6c604385bb57a0961/my_theme.zshrc
+#RUN sed -i 's#/bin/bash#/bin/zsh#g' /etc/passwd && \
+#    wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh && \
+#    wget -O ~/.zshrc https://gist.githubusercontent.com/smichard/bd86a05ed89a92e364e65ea3ada8e19d/raw/a3cbe29982395dd6fb3fb5d6c604385bb57a0961/my_theme.zshrc
 
 USER 10001
 
@@ -46,4 +46,4 @@ USER 10001
 
 #CMD while [ ! -f /home/user/.kube/config ]; do sleep 1; done; kubedock server --port-forward
 
-CMD ["/bin/sh"]
+CMD ["/bin/bash"]
