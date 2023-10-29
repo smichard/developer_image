@@ -4,7 +4,9 @@ FROM quay.io/centos/centos:stream9
 USER 0
 
 RUN yum -y update && \
-    yum -y install git make podman buildah skopeo java-11-openjdk yum-utils zsh util-linux-user wget
+    yum -y install git make podman buildah skopeo java-11-openjdk yum-utils zsh util-linux-user wget && \
+    yum clean all && \
+    rm -rf /var/cache/yum
 
 # Install Go
 RUN curl -sSL https://go.dev/dl/go1.20.3.linux-amd64.tar.gz -o /tmp/go1.20.3.linux-amd64.tar.gz && \
@@ -38,7 +40,7 @@ RUN sed -i 's#/bin/bash#/bin/zsh#g' /etc/passwd && \
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh && \
     wget -O ~/.zshrc https://gist.githubusercontent.com/smichard/bd86a05ed89a92e364e65ea3ada8e19d/raw/a3cbe29982395dd6fb3fb5d6c604385bb57a0961/my_theme.zshrc
 
-#USER 10001
+USER 10001
 
 #RUN source $HOME/.sdkman/bin/sdkman-init.sh && sdk default java 17.0.3-tem
 
