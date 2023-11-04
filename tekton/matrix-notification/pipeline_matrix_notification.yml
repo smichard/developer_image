@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline-matrix
+  namespace: testing
+spec:  
+  tasks:
+  - name: notify-matrix-room
+    params:
+      - name: message
+        value: Message to be sent to Matrix room
+    taskRef:
+      kind: Task
+      name: notification-to-matrix
