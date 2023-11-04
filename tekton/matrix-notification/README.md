@@ -1,18 +1,18 @@
 # Tekton Task and Pipeline to send a notification to a Matrix Room
 
 build custom container:
-´´´bash
+```bash
 podman build --arch=amd64 -t quay.io/michard/developer_image:tekton-curl -f Containerfile
 podman push quay.io/michard/developer_image:tekton-curl
-´´´
+```
 
 create secret:
-´´´bash
+```bash
 oc create -f matrix-secret.yml
-´´´
+```
 
 create task and pipeline:
-´´´bash
+```bash
 oc create -f task_matrix_notification.yml
 oc create -f pipeline_matrix_notification.yml
-´´´
+``````
