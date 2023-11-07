@@ -16,3 +16,10 @@ create task and pipeline:
 oc create -f task_matrix_notification.yml
 oc create -f pipeline_matrix_notification.yml
 ```
+
+trigger pipeline run:
+```bash
+oc create -f pipeline_run_matrix_notification.yml
+or
+tkn pipeline start pipeline-matrix --param=message="my custom message here" --showlog
+```
