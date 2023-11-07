@@ -18,7 +18,7 @@ spec:
     description: plain text message
   steps:
   - name: post
-    image: quay.io/michard/developer_image:alpine-curl-test
+    image: quay.io/michard/developer_image:tekton-curl
     script: |
       #!/bin/sh
       curl -X POST -H 'Content-type: application/json' --data '{"msgtype":"m.text", "body":"$(params.message)"}' https://$ENDPOINT/_matrix/client/r0/rooms/$ROOM/send/m.room.message?access_token=$TOKEN
