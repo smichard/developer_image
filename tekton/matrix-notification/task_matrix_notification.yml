@@ -16,6 +16,9 @@ spec:
   - name: message
     type: string
     description: plain text message
+  - name: notification-secret
+    type: string
+    default: "matrix-secret"
   steps:
   - name: post
     image: quay.io/michard/developer_image:tekton-curl
@@ -26,15 +29,15 @@ spec:
     - name: TOKEN
       valueFrom:
         secretKeyRef:
-          name: matrix-secret
+          name: $(params.notification-secret)
           key: matrix-token
     - name: ENDPOINT
       valueFrom:
         secretKeyRef:
-          name: matrix-secret
+          name: $(params.notification-secret)
           key: matrix-endpoint
     - name: ROOM
       valueFrom:
         secretKeyRef:
-          name: matrix-secret
+          name: $(params.notification-secret)
           key: matrix-room

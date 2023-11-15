@@ -8,3 +8,5 @@ spec:
   params:
     - name: message
       value: "custom message"
+    - name: notification-secret
+      value: "matrix-secret"
