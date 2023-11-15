@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: debug
+  labels:
+    app.kubernetes.io/version: "0.1"
+  annotations:
+    tekton.dev/pipelines.minVersion: "0.12.1"
+    tekton.dev/categories: Messaging
+    tekton.dev/tags: messaging
+    tekton.dev/platforms: "linux/amd64"
+spec:
+  description: >-
+    Debug
+  workspaces:
+    - name: source
+  steps:
+  - name: debug
+    image: quay.io/michard/developer_image:tekton-curl
+    script: |
+      #!/bin/sh
+      pwd
+      ls
+      cd $(workspaces.source.path)
+      pwd
+      ls
