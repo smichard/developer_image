@@ -1,0 +1,30 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: developer-images-run-
+spec:
+  pipelineRef:
+    name: developer-images
+  workspaces:
+  - name: shared-workspace
+    persistentVolumeClaim:
+      claimName: tekton
+  - name: registry-credentials
+    secret:
+      secretName: quay-creds
+  params:
+  - name: service-version
+    value: "1.0.0"
+  - name: git-url
+    value: "https://github.com/smichard/developer_image"
+  - name: git-revision
+    value: "main"
+  - name: IMAGE
+    value: "image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/developer_image"
+  - name: TARGET_IMAGE
+    value: "quay.io/michard/developer_image:tekton"
+  - name: message
+    value: "Cities Demo: new image build and pushed to internal and external registry. Build ID:"
+  - name: notification-secret
+    value: "matrix-secret"
+

@@ -1,4 +1,3 @@
-# Use CentOS Stream 9 as the base image
 FROM registry.redhat.io/devspaces/udi-rhel8
 
 USER 0
@@ -11,10 +10,6 @@ RUN dnf -y update && \
 # Install Skaffold
 RUN curl -sSL https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 -o /usr/local/bin/skaffold && \
     chmod +x /usr/local/bin/skaffold
-
-# Install Docker
-#RUN dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo && \
-#    dnf -y install docker-ce --allowerasing
 
 # Install and configure Oh-My-ZSH
 RUN sed -i 's#/bin/bash#/bin/zsh#g' /etc/passwd && \
