@@ -12,19 +12,19 @@ spec:
     default: "1.0.0"
   - name: git-url
     type: string
-    description: url of the git repo for the code of deployment
+    description: "Url of the git repo for the code of deployment"
     default: https://github.com/smichard/developer_image
   - name: git-revision
     type: string
-    description: revision to be used from repo of the code for deployment
+    description: "Revision to be used from repo of the code for deployment"
     default: main
-  - name: IMAGE
+  - name: image
     type: string
-    description: image to be build from the code
+    description: "Image to be build from the code and push to internal registry"
     default: image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/developer_image
-  - name: TARGET_IMAGE
+  - name: target-image
     type: string
-    description: image to be build from the code
+    description: "Image to be build from the code and push to external registry"
     default: quay.io/michard/developer_image:tekton
   - name: message
     type: string
@@ -60,28 +60,28 @@ spec:
     runAfter:
     - get-build-id
   - name: build-image-internal
+    retries: 3
     taskRef:
       name: buildah
       kind: ClusterTask
     params:
     - name: IMAGE
-      value: $(params.IMAGE):$(tasks.get-build-id.results.build-id)
+      value: $(params.image):$(tasks.get-build-id.results.build-id)
     - name: DOCKERFILE
       value: "./Containerfile"
-    - name: SKIP_PUSH
-      value: "false"
     workspaces:
     - name: source
       workspace: shared-workspace
     runAfter:
     - fetch-repository
   - name: build-image-external
+    retries: 3
     taskRef:
       name: buildah
       kind: ClusterTask
     params:
     - name: IMAGE
-      value: $(params.TARGET_IMAGE)-$(tasks.get-build-id.results.build-id)
+      value: $(params.target-image)-$(tasks.get-build-id.results.build-id)
     - name: DOCKERFILE
       value: "./Containerfile"
     workspaces:
