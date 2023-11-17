@@ -19,9 +19,9 @@ spec:
     value: "https://github.com/smichard/developer_image"
   - name: git-revision
     value: "main"
-  - name: IMAGE
+  - name: image
     value: "image-registry.openshift-image-registry.svc:5000/$(context.pipelineRun.namespace)/developer_image"
-  - name: TARGET_IMAGE
+  - name: target-image
     value: "quay.io/michard/developer_image:tekton"
   - name: message
     value: "Cities Demo: new image build and pushed to internal and external registry. Build ID:"
