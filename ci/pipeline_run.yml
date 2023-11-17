@@ -3,12 +3,13 @@ kind: PipelineRun
 metadata:
   generateName: developer-images-run-
 spec:
+  serviceAccountName: pipeline
   pipelineRef:
     name: developer-images
   workspaces:
   - name: shared-workspace
     persistentVolumeClaim:
-      claimName: tekton
+      claimName: tekton-developer-images
   - name: registry-credentials
     secret:
       secretName: quay-creds
