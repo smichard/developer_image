@@ -6,12 +6,12 @@ metadata:
     app.kubernetes.io/version: "0.1"
   annotations:
     tekton.dev/pipelines.minVersion: "0.12.1"
-    tekton.dev/categories: Messaging
-    tekton.dev/tags: messaging
+    tekton.dev/categories: Cli
+    tekton.dev/tags: cli
     tekton.dev/platforms: "linux/amd64"
 spec:
   description: >-
-    Debug
+    Simple Task to develop or debug the development of a Task or Pipeline
   workspaces:
     - name: source
   steps:
