@@ -41,16 +41,3 @@ components:
           value: OpenShift console
         - name: OPENVSX_REGISTRY_URL
           value: 'https://open-vsx.org/'
-commands:
-  - id: first-command
-    exec:
-      component: devspaces-image
-      commandLine: "echo first command"
-  - id: second-command
-    exec:
-      component: devspaces-image
-      commandLine: "zsh"
-events:
-  postStart:
-    - first-command
-    - second-command
