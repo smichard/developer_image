@@ -11,6 +11,10 @@ RUN dnf -y update && \
 RUN curl -sSL https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 -o /usr/local/bin/skaffold && \
     chmod +x /usr/local/bin/skaffold
 
+# Install Tekton CLI
+RUN curl -L https://github.com/tektoncd/cli/releases/download/v0.33.0/tkn_0.33.0_Linux_x86_64.tar.gz | tar -xz -C /usr/local/bin/ tkn && \
+    chmod +x /usr/local/bin/tkn
+
 # Install and configure Oh-My-ZSH
 RUN sed -i 's#/bin/bash#/bin/zsh#g' /etc/passwd && \
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh && \
