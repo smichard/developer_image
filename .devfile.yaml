@@ -4,7 +4,7 @@ metadata:
   namespace: smichard-devspaces
   attributes:
     metadata-name-field: generateName
-    metadata-name-original-value: developer-images
+    metadata-name-original-value: developer_images
 attributes:
   che-theia.eclipse.org/sidecar-policy: mergeImage
   controller.devfile.io/devworkspace-config:
@@ -19,7 +19,7 @@ attributes:
       factory:
         params: url=https://github.com/smichard/developer_image
 projects:
-  - name: developer_image
+  - name: developer-image
     git:
       remotes:
         origin: https://github.com/smichard/developer_image
