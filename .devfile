@@ -1,0 +1,43 @@
+schemaVersion: "2.2.0"
+metadata:
+  name: developer-images
+  namespace: smichard-devspaces
+  attributes:
+    metadata-name-field: generateName
+    metadata-name-original-value: developer-images
+attributes:
+  che-theia.eclipse.org/sidecar-policy: mergeImage
+  controller.devfile.io/devworkspace-config:
+    name: devworkspace-config
+    namespace: openshift-operators
+  controller.devfile.io/scc: container-build
+  controller.devfile.io/storage-type: per-user
+  dw.metadata.annotations:
+    che.eclipse.org/devfile-source: |
+      url:
+        location: https://github.com/smichard/developer_image
+      factory:
+        params: url=https://github.com/smichard/developer_image
+projects:
+  - name: cities-demo
+    git:
+      remotes:
+        origin: https://github.com/smichard/developer_image
+components:
+  - name: devspaces-image
+    container:
+      image: quay.io/michard/developer_image:devspaces-1.0.0-20231218-201501
+      sourceMapping: /projects
+      env:
+        - name: CHE_DASHBOARD_URL
+          value: https://devspaces.apps.ocp.michard.cc
+        - name: CHE_PLUGIN_REGISTRY_URL
+          value: https://devspaces.apps.ocp.michard.cc/plugin-registry/v3
+        - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
+          value: http://plugin-registry.openshift-operators.svc:8080/v3
+        - name: CLUSTER_CONSOLE_URL
+          value: https://console-openshift-console.apps.ocp.michard.cc
+        - name: CLUSTER_CONSOLE_TITLE
+          value: OpenShift console
+        - name: OPENVSX_REGISTRY_URL
+          value: 'https://open-vsx.org/'
