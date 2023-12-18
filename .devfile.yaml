@@ -44,11 +44,11 @@ components:
 commands:
   - id: first-command
     exec:
-      component: tools
+      component: devspaces-image
       commandLine: "echo first command"
   - id: second-command
     exec:
-      component: tools
+      component: devspaces-image
       commandLine: "echo second command"
 events:
   postStart:
