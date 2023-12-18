@@ -49,7 +49,7 @@ commands:
   - id: second-command
     exec:
       component: devspaces-image
-      commandLine: "echo second command"
+      commandLine: "zsh"
 events:
   postStart:
     - first-command
