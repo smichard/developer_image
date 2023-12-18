@@ -26,7 +26,7 @@ projects:
 components:
   - name: devspaces-image
     container:
-      image: quay.io/michard/developer_image:devspaces-1.0.0-20231218-201501
+      image: quay.io/michard/developer_image:devspaces-1.0.0-20231218-203036
       sourceMapping: /projects
       env:
         - name: CHE_DASHBOARD_URL
