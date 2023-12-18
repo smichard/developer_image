@@ -19,7 +19,7 @@ attributes:
       factory:
         params: url=https://github.com/smichard/developer_image
 projects:
-  - name: cities-demo
+  - name: developer_image
     git:
       remotes:
         origin: https://github.com/smichard/developer_image
