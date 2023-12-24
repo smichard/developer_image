@@ -22,5 +22,8 @@ RUN sed -i 's#/bin/bash#/bin/zsh#g' /etc/passwd && \
 
 USER 10001
 
+# Set the HOME environment variable for USER 10001
+ENV HOME=/home/user10001
+
 # Set git rebase configuration
 RUN git config --global pull.rebase true
