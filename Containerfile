@@ -20,14 +20,4 @@ RUN sed -i 's#/bin/bash#/bin/zsh#g' /etc/passwd && \
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh && \
     wget -O ~/.zshrc https://gist.githubusercontent.com/smichard/bd86a05ed89a92e364e65ea3ada8e19d/raw/a3cbe29982395dd6fb3fb5d6c604385bb57a0961/my_theme.zshrc
 
-# Create a home directory for USER 10001 and set permissions
-RUN mkdir -p /home/user && \
-    chown 10001:10001 /home/user
-
 USER 10001
-
-# Set the HOME environment variable for USER 10001
-ENV HOME=/home/user
-
-# Set git rebase configuration
-RUN git config --global pull.rebase true
