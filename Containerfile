@@ -20,4 +20,7 @@ RUN sed -i 's#/bin/bash#/bin/zsh#g' /etc/passwd && \
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh && \
     wget -O ~/.zshrc https://gist.githubusercontent.com/smichard/bd86a05ed89a92e364e65ea3ada8e19d/raw/a3cbe29982395dd6fb3fb5d6c604385bb57a0961/my_theme.zshrc
 
+# Set git rebase configuration
+RUN git config --global pull.rebase true
+
 USER 10001
